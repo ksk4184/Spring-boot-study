@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+		
+	<context:component-scan base-package="di7"></context:component-scan>
+<!--
+ 	annotation을 이용해서 객체를 반으로 등록하는 방법
+	클래스 정의 소스코드위에 annotation을 삽입하면
+	'annotation을 읽어드려라!'라는 뜻으로 해석하여
+	클래스를 읽어서 bean으로 준비한다.
+-->
+	<bean></bean>
+</beans>

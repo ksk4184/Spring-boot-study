@@ -1,0 +1,15 @@
+Create table product (
+	code int auto_increment PRIMARY KEY,
+    name varchar(10),
+    price int,
+    pictureurl varchar(20),
+    description varchar(20)
+);
+
+insert into product values(1, 'coke', 1000, 'abc', 'ddd');
+insert into product values(2, 'milk', 2000, 'zzz', 'ttt');
+
+drop table product;
+
+SELECT * FROM product;
+

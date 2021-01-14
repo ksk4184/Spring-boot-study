@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+		
+	<!-- 핵심 관심사항을 실행하기 전 before, after, 다 실행한다 -->
+	
+	
+	<bean id="boy" class="aop5.Boy"></bean>
+	<bean id="girl" class="aop5.Girl"></bean>
+	<bean id="myAspect" class="aop5.MyAspect"></bean>
+	
+	<!-- 다음 아래부터 공통관심사항이다. -->
+	<aop:config> <!-- AOP의 루트 태그 -->
+		<!-- aspect의 그룹 지정 -->
+		<aop:aspect ref="myAspect">
+			<!-- 어떤 지점에 그것을 넣을 것이냐 -->
+			<!-- *(아스크립트) : 임의의 1개 데이터를 의미, (..) -> : 0개 이상의 데이터를 의미 -->
+			<aop:pointcut expression="execution(public * aop5.*.doSomething(..))" id="myPt"/>
+			
+			<aop:around method="doAround" pointcut-ref="myPt" />
+			
+<!-- 			<aop:before method="doBefore" pointcut-ref="myPt" />
+			<aop:after-returning method="doAfterReturning" pointcut-ref="myPt" returning="rt" /> 리턴값등록 정상적인 실행 후
+			<aop:after-throwing method="doAfterThrowing" pointcut-ref="myPt" throwing="th" /> th라는 변수에 예외정보를 넣어라
+			예외발생시 객체를 넣어달라고 throwing 표시한다.
+			<aop:after method="doAfter" pointcut-ref="myPt" /> -->
+			
+		</aop:aspect>
+	</aop:config>
+
+
+</beans>

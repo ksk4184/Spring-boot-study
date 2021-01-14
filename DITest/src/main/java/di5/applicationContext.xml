@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="tire" class="di5.ChinaTire"></bean>
+	<bean id="car" class="di5.Car">
+		<constructor-arg name="t" ref="tire">
+		<!-- <constructor-arg index="0" ref="tire"> -->
+		</constructor-arg>
+	</bean>
+	
+<!--
+매개변수가 1개일 경우 name, index 생략 가능
+name	: 생성자의 넣을 변수명
+index	: 몇번째 변수
+ref는 참조변수일때 쓰이는 것.
+val은 기본형타입일 때 쓰이는 것 -->
+
+</beans>
+
+<!-- 
+프로그램 메인메서드가 돌아갈때
+빈객체 생성도하고 생성자 셋팅도 다 되는 것이다.
+di5 패키지의 Car 클래스에 기본생성자가 없기 때문에 에러가 난 것임. 
+-->

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+		
+	<!-- 핵심 관심사항을 실행하기 전 before, after, 다 실행한다 -->
+	<bean id="boy" class="aop3.Boy"></bean>
+	<bean id="girl" class="aop3.Girl"></bean>
+	<bean id="myAspect" class="aop3.MyAspect"></bean>
+	
+	<!-- 다음 아래부터 공통관심사항이다ㅡ. -->
+	<aop:config> <!-- AOP의 루트 태그 -->
+		<!-- aspect의 그룹 지정 -->
+		<aop:aspect ref="myAspect">
+			<!-- 어떤 지점에 그것을 넣을 것이냐 -->
+			<!-- *(아스크립트) : 임의의 1개 데이터를 의미, (..) -> : 0개 이상의 데이터를 의미 -->
+			<aop:pointcut expression="execution(public * aop3.*.doSomething(..))" id="myPt"/>
+			
+			<aop:before method="doBefore" pointcut-ref="myPt" />
+			<aop:after-returning method="doAfterReturning" pointcut-ref="myPt" /> <!-- 정상적인 실행 후 -->
+			<aop:after-throwing method="doAfterThrowing" pointcut-ref="myPt" />
+			<aop:after method="doAfter" pointcut-ref="myPt" />
+		</aop:aspect>
+	</aop:config>
+</beans>
